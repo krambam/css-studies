@@ -1,0 +1,30 @@
+/* reset css */
+/* vs extra 3px padding */
+img{
+	vertical-align: middle;
+}
+
+/* helper */
+.hide{
+	display: none;
+}
+
+/* main css */
+/* body html height */
+html,
+body{
+	width: 100%; /* this is default */
+	height: 100%; /* this is not default */
+}
+
+/* high */
+.high-image{
+	height: 100%; /* this will overflow the body, because it's parent does not have width 100% set. It has height auto, which is an "undefined value" which makes it impossible to evaluate the 100%. */
+}
+/* wide */
+.wide-image{
+	width: 100%; /* This will not overflow, even though its parent has width: auto as well, since width and height work fundamentally different in the browser apparently */
+}
+.wide-image-box{
+	width: auto;
+}

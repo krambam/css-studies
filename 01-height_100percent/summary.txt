@@ -1,0 +1,11 @@
+# Summary
+
+- Images have by default a margin (bottom?) of 3px if they do not have the attribute vertical-align set. (e.g.: vertical-align: middle;)
+- "height: 100%" must always be cascaded through all parents by setting them to "height: 100%" as well. (height: auto will not translate, appertly only does with width??)
+
+## About CSS height 100%
+"To understand why, you need to understand how browsers interpret height and width. Web browsers calculate the total available width as a function of how wide the browser window is opened. If you don't set any width values on your documents, the browser will automatically flow the contents to fill the entire width of the window.
+
+But height is calculated differently. In fact, browsers don't evaluate height at all unless the content is so long that it goes outside of the view port (thus requiring scroll bars) or if the web designer sets an absolute height on an element on the page. Otherwise, the browser simply lets the content flow within the width of the view port until it comes to the end. The height is not calculated at all.
+
+The problem occurs when you set a percentage height on an element who's parent elements don't have heights set. In other words, the parent elements have a default height: auto;. You are, in effect, asking the browser to calculate a height from an undefined value. Since that would equal a null-value, the result is that the browser does nothing."
