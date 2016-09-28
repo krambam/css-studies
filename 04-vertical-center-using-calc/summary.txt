@@ -7,3 +7,5 @@ Vertical centering of known height element with calc:
 - .element{ position: relative; top: calc(50% - {heightOfElement / 2}px); }
 using font-size for the height-value:
 - .element{ height: 1em; position: relative; top: calc(50% - 0.5em); }
+
+[ Works even in IE9, at least in IE9 simulation mode of Edge ]
