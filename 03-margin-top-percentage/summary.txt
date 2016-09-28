@@ -1,0 +1,6 @@
+# Summary
+
+margin-top in percentage
+------------------------
+Counter intuitive behaviour:
+The point is that a percentage value for top/bottom margin/padding properties is relative to the WIDTH (!!!!!) of the box's containing block. It doesn't respect the height of the parent element.
