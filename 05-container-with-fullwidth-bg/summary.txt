@@ -1,0 +1,6 @@
+# Summary
+
+fixed width centered container with full screen width bg
+--------------------------------------------------------
+
+- use negative margin and padding against each other to let the contents bg flow out of the container. Needs a high fixed px value, e.g. 5000px and body{ x-overflow: hidden }.
