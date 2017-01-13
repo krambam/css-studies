@@ -11,10 +11,12 @@
     padding-bottom: 1.5em;
 }
 .main-nav > ul{
-    columns: 140px 3;
-    -moz-columns: 140px 3;
-    column-gap: 0;
-    -moz-column-gap: 0;
+    -webkit-columns:    140px 3;
+    columns:            140px 3;
+    -moz-columns:       140px 3;
+    -webkit-column-gap: 0;
+    column-gap:         0;
+    -moz-column-gap:    0;
 }
 .main-nav > ul > li {
     display: block;
@@ -29,6 +31,7 @@
     border: solid 1px #5c5c5c;
     box-shadow: 0 0 16px rgba(0,0,0,0.4) inset;
     display: block;
+    min-height: 90px;
     @include flexCenterContent();
     > span{
         height: auto;

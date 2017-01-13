@@ -7,19 +7,10 @@
     <link rel="stylesheet" href="css/lib/scaffold.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/ml-js-tools.js"></script>
     <script>
-        function hasBrowserBodyHasMsFlexPackAttribute(){
-            console.log(typeof document.body.style.msFlexPack === 'string');
-        }
         $(document).ready(function(){
-            hasBrowserBodyHasMsFlexPackAttribute();
-            console.log('');
-            var $flexContainers = $( "*" ).filter(function( index ) {
-                return $( this ).css('-ms-flex-pack') === 'center';
-            });
-            $flexContainers.each(function() {
-                $(this).css('height', $( this ).height());
-            });
+            initIEFlexboxHeightFix();
         });
     </script>
 </head>

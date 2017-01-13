@@ -230,15 +230,11 @@ $container-lg: $screen-lg-min - $containerSidePadding;
 // HELPER MIXIN TOOLS
 // ------------------
 @mixin flexCenterContent($minHeight: null){
-    display: -ms-flexbox;
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     display: flex;
     align-items: center; /* Center vertically */
     justify-content: center; /*Center horizontaly */
     -ms-flex-pack: center; /*Center horizontaly ie */
-    @if $minHeight == null{
-        // height: 2em; // IE BUG: height has to be set to some value for IE 11. Can be done with JS
-        min-height: 40px;
-    } @else {
-        min-height: $minHeight;
-    }
 }
