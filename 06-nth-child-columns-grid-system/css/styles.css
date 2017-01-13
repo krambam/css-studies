@@ -26,12 +26,47 @@
   display: flex;
   flex-flow: row wrap; }
   .row > * {
-    margin-right: 0.08333%;
-    width: 24.9375%; }
-    .row > *:nth-child(4n) {
-      margin-right: 0; }
-    .row > *:nth-child(4n + 1) {
-      clear: left; }
+    width: 100%; }
+    @media screen and (min-width: 1200px) {
+      .row > * {
+        width: 18%;
+        margin-right: 2.5%; }
+        .row > *:nth-child(5n) {
+          margin-right: 0; }
+        .row > *:nth-child(5n + 1) {
+          clear: left; } }
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
+      .row > * {
+        width: 23.125%;
+        margin-right: 2.5%; }
+        .row > *:nth-child(4n) {
+          margin-right: 0; }
+        .row > *:nth-child(4n + 1) {
+          clear: left; } }
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+      .row > * {
+        width: 31.66667%;
+        margin-right: 2.5%; }
+        .row > *:nth-child(3n) {
+          margin-right: 0; }
+        .row > *:nth-child(3n + 1) {
+          clear: left; } }
+    @media screen and (min-width: 480px) and (max-width: 767px) {
+      .row > * {
+        width: 48.75%;
+        margin-right: 2.5%; }
+        .row > *:nth-child(2n) {
+          margin-right: 0; }
+        .row > *:nth-child(2n + 1) {
+          clear: left; } }
+    @media screen and (max-width: 479px) {
+      .row > * {
+        width: 18%;
+        margin-right: 2.5%; }
+        .row > *:nth-child(5n) {
+          margin-right: 0; }
+        .row > *:nth-child(5n + 1) {
+          clear: left; } }
 
 .col {
   border: solid black 1px;

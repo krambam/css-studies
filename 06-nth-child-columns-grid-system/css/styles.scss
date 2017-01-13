@@ -2,8 +2,15 @@
 .container{
     @extend %container;
 }
+@mixin tester($sizesMap: null, $padding: 0){
+    font-family: type-of($sizesMap) == 'number';
+}
+body{
+    // @include tester(5);
+}
 .row{
-    @include flexrow(4, 1px);
+    @include flexrow(5, ( lg:5, md:4, sm:3, xs: 2, xxs: 5));
+    // @include tester((lg:5), 3%);
 }
 .col{
     border: solid black 1px;
