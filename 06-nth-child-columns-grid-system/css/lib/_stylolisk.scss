@@ -1,7 +1,4 @@
-// functions
-@function calcPercent($target, $container) {
-    @return ($target / $container) * 100%;
-}
+// *** MEDIALISK Stylolisk ***
 
 // VARIABLES
 // --------------------------------------------------------------------------------
@@ -50,6 +47,16 @@ $container-lg: $screen-lg-min - $containerSidePadding;
         clear: both;
     }
 }
+@mixin clearfix{
+    &:before,
+    &:after{
+        content: "";
+        display: table;
+    }
+    &:after{
+        clear: both;
+    }
+}
 %img-responsive{
     max-width: 100%;
     height: auto;
@@ -82,7 +89,9 @@ $container-lg: $screen-lg-min - $containerSidePadding;
     margin-left: auto;
     margin-right: auto;
 }
-
+@mixin importantPseudoQuery{
+    @media screen and (min-width: 0px){ @content } // only hack to boost selector priority
+}
 
 // -------------------------------------------------------
 // ABSTRACE GRID CLASSES
@@ -100,7 +109,7 @@ $container-lg: $screen-lg-min - $containerSidePadding;
     @media  (min-width: $screen-lg-min)    { width: $container-lg; }
     @extend %clearfix;
 }
-%row{
+%simple-row{
     margin-left: -$defaultPadding;
     margin-right: -$defaultPadding;
     @extend %clearfix;
@@ -122,19 +131,19 @@ $container-lg: $screen-lg-min - $containerSidePadding;
 
 
 // GRID COL SYSTEM ABSTRACT
-%col-abstract{
-    position: relative;
+@mixin col-abstract{
     float: left;
     min-height: 1px;
 }
+%col-abstract{ @include col-abstract; }
 
 // SIMPLE "COL"
-@mixin col     ($width)  { @extend %col-abstract;   @include responsive-desktop() { width: $width * 100% }}
-@mixin col-lg  ($width)  { @extend %col-abstract;   @include responsive-lg()      { width: $width * 100% }}
-@mixin col-md  ($width)  { @extend %col-abstract;   @include responsive-md()      { width: $width * 100% }}
-@mixin col-sm  ($width)  { @extend %col-abstract;   @include responsive-sm()      { width: $width * 100% }}
-@mixin col-xs  ($width)  { @extend %col-abstract;   @include responsive-xs()      { width: $width * 100% }}
-@mixin col-xxs ($width)  { @extend %col-abstract;   @include responsive-xxs()     { width: $width * 100% }}
+@mixin simple-col     ($width)  { @extend %col-abstract;   @include responsive-desktop() { width: $width * 100% }}
+@mixin simple-col-lg  ($width)  { @extend %col-abstract;   @include responsive-lg()      { width: $width * 100% }}
+@mixin simple-col-md  ($width)  { @extend %col-abstract;   @include responsive-md()      { width: $width * 100% }}
+@mixin simple-col-sm  ($width)  { @extend %col-abstract;   @include responsive-sm()      { width: $width * 100% }}
+@mixin simple-col-xs  ($width)  { @extend %col-abstract;   @include responsive-xs()      { width: $width * 100% }}
+@mixin simple-col-xxs ($width)  { @extend %col-abstract;   @include responsive-xxs()     { width: $width * 100% }}
 
 // GRID HIDERS
 %hidden-desktop { @include responsive-desktop   (){ display: none; }}
@@ -155,63 +164,63 @@ $container-lg: $screen-lg-min - $containerSidePadding;
 %visible-xxs     { display: none; @include responsive-xxs     { display: block; }}
 
 
+// GRID SYSTEM 2 (NTH-CHIld BASED)
+// -------------------------------
 
-// PRINT MEDIA QUERIES
-%visible-print{
-    display: none  !important;
-    @media print {
-        display: block !important;
-    }
-}
-%hidden-print{
-    @media print {
-        display: none !important;
-    }
-}
-
-@mixin mlColConfig($colAmount, $width, $marginRight){
+@mixin incColConfig($colAmount, $width, $marginRight){
+    @include col-abstract;
     width: $width;
     margin-right: $marginRight;
     &:nth-child(#{$colAmount}n)     { margin-right: 0; }
     &:nth-child(#{$colAmount}n + 1) { clear: left; }
 }
-
-// new grid system
-@mixin mlcol($colAmounts, $gutterWidth: null) {
-    @extend %col-abstract;
+@mixin colFloated($cols, $gutterWidth: null) {
     @if $gutterWidth == null {
         $gutterWidth: $defaultPadding * 2   / $screen-lg-min * 100%;
     } @else if unit($gutterWidth) == 'px' {
         $gutterWidth: $gutterWidth          / $screen-lg-min * 100%;
     }
-
     // main
-    @if type-of($colAmounts) == 'number' {
-        $actualColWidth: ( 100% - ($colAmounts - 1) * $gutterWidth ) / $colAmounts; // 100% minus all gutter width / amount times margins
-        @include responsive-desktop { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
+    @if type-of($cols) == 'number' {
+        $actualColWidth:     ( 100% - ($cols - 1) * $gutterWidth ) / $cols; // 100% minus all gutter width / amount times margins
+        @include responsive-desktop { @include incColConfig($cols, $actualColWidth, $gutterWidth); }
     } @else{
-        @each $size, $colAmounts in $colAmounts {
-            $actualColWidth: ( 100% - ($colAmounts - 1) * $gutterWidth ) / $colAmounts; // 100% minus all gutter width / amount times margins
+        @each $size, $cols in $cols {
+            $actualColWidth: ( 100% - ($cols - 1) * $gutterWidth ) / $cols; // 100% minus all gutter width / amount times margins
             @if $size == 'lg' {
-                @include responsive-lg { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
+                @include responsive-lg { @include incColConfig($cols, $actualColWidth, $gutterWidth); }
             } @else if $size == 'md' {
-                @include responsive-md { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
+                @include responsive-md { @include incColConfig($cols, $actualColWidth, $gutterWidth); }
             } @else if $size == 'sm' {
-                @include responsive-sm { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
+                @include responsive-sm { @include incColConfig($cols, $actualColWidth, $gutterWidth); }
             } @else if $size == 'xs' {
-                @include responsive-xs { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
+                @include responsive-xs { @include incColConfig($cols, $actualColWidth, $gutterWidth); }
             } @else if $size == 'xxs' {
-                @include responsive-xxs { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
+                @include responsive-xxs { @include incColConfig($cols, $actualColWidth, $gutterWidth); }
             }
         }
     }
 }
-@mixin flexrow($colAmounts, $gutterWidth: null){
-    @extend %clearfix;
-    display: flex;
-    flex-flow: row wrap;
+@mixin row($cols, $gutterWidth: null){
+    $minWidth: $screen-desktop-min;
+    @if type-of($cols) == 'map' {
+        @if map-has-key($cols, xxs){
+            $minWidth: 0;
+        } @else if map-has-key($cols, xs){
+            $minWidth: $screen-xs-min;
+        } @else if map-has-key($cols, sm){
+            $minWidth: $screen-sm-min;
+        }
+    }
+    @media screen and (min-width: $minWidth){
+        @include clearfix;
+        display: flex;
+        flex-flow: row wrap;
+        > * {
+            width: 100%; // for media queries base for flexbox
+        }
+    }
     > *{
-        width: 100%; // for media queries base
-        @include mlcol($colAmounts, $gutterWidth);
+        @include colFloated($cols, $gutterWidth);
     }
 }
