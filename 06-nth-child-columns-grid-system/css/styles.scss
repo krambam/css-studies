@@ -3,7 +3,11 @@
     @extend %container;
 }
 .row{
-    @include flexrow(5, 10%);
+    @include flexrow(4, 1px);
+}
+.col{
+    border: solid black 1px;
+    background-color: red;
 }
 p,
 h1,

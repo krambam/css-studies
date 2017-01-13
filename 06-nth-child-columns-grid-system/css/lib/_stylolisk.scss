@@ -164,12 +164,18 @@ $container-lg: $screen-lg-min - $containerSidePadding;
     }
 }
 
-
+@function calcPercent($target, $container) {
+    @return ($target / $container) * 100%;
+}
 // new grid system
 @mixin mlcol($amount, $gutterWidth: null){
     @if $gutterWidth == null{
-        $gutterWidth: $defaultPaddingInPercent * 2;
+        $gutterWidth: calcPercent($defaultPadding * 2, $screen-lg-min);
+    } @else if unit($gutterWidth) == 'px'{
+        $gutterWidth: calcPercent($gutterWidth, $screen-lg-min);
     }
+
+
     $totalGutterWidth: ($amount - 1) * $gutterWidth;
     $totalAvailableWidth: 100% - $totalGutterWidth;
     $actualColWidth: $totalAvailableWidth / $amount;
