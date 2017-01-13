@@ -23,19 +23,16 @@
 
 .main-nav {
   line-height: 1em;
-  padding-bottom: 1.5em; }
+  margin-bottom: 2em;
+  font-size: 18px; }
 
 .main-nav > ul {
   -webkit-column-count: 3;
-  /* Chrome, Safari, Opera */
   -moz-column-count: 3;
-  /* Firefox */
   column-count: 3;
-  -webkit-column-width: 140px;
-  /* Chrome, Safari, Opera */
-  -moz-column-width: 140px;
-  /* Firefox */
-  column-width: 140px;
+  -webkit-column-width: 190px;
+  -moz-column-width: 190px;
+  column-width: 190px;
   -webkit-column-gap: 0;
   -moz-column-gap: 0;
   column-gap: 0; }
@@ -53,7 +50,7 @@
   border: solid 1px #5c5c5c;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.4) inset;
   display: block;
-  min-height: 90px;
+  min-height: 70px;
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox;
@@ -67,7 +64,10 @@
   /*Center horizontaly */
   -ms-flex-pack: center;
   /*Center horizontaly ie */ }
-  .main-nav > ul > li > a > span {
-    height: auto;
-    width: auto;
-    padding: 0 15px; }
+
+.main-nav > ul > li > a > span {
+  height: auto;
+  width: auto;
+  padding: 6px 15px; }
+
+/*# sourceMappingURL=styles.css.map */

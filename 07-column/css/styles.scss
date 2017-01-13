@@ -1,5 +1,18 @@
 @import "lib/stylolisk";
 
+// MIXINS
+@mixin cssColumn($count, $width, $gap: 0){
+    -webkit-column-count:  $count; // Chrome, Safari, Opera
+    -moz-column-count:     $count; // Firefox
+    column-count:          $count;
+    -webkit-column-width:  $width; // Chrome, Safari, Opera
+    -moz-column-width:     $width; // Firefox
+    column-width:          $width;
+    -webkit-column-gap:    $gap;
+    -moz-column-gap:       $gap;
+    column-gap:            $gap;
+}
+// MAIN STYLES
 .container{
     @extend %container;
 }
@@ -8,37 +21,30 @@
 }
 .main-nav{
     line-height: 1em;
-    padding-bottom: 1.5em;
+    margin-bottom: 2em;
+    font-size: 18px;
 }
 .main-nav > ul{
-    -webkit-column-count:       3; /* Chrome, Safari, Opera */
-    -moz-column-count:          3; /* Firefox */
-    column-count:               3;
-    -webkit-column-width:   140px; /* Chrome, Safari, Opera */
-    -moz-column-width:      140px; /* Firefox */
-    column-width:           140px;
-    -webkit-column-gap:         0;
-    -moz-column-gap:            0;
-    column-gap:                 0;
+    @include cssColumn(3, 190px, 0);
 }
 .main-nav > ul > li {
     display: block;
     text-align: center;
     background-color: #d0d0d0;
-    break-inside: avoid-column;
-    -webkit-column-break-inside: avoid; // Chrome, Safari, Opera
-    page-break-inside: avoid; // Firefox
+    break-inside:                   avoid-column;
+    -webkit-column-break-inside:    avoid; // Chrome, Safari, Opera
+    page-break-inside:              avoid; // Firefox
 }
 .main-nav > ul > li > a{
     width: 100%;
     border: solid 1px #5c5c5c;
     box-shadow: 0 0 16px rgba(0,0,0,0.4) inset;
     display: block;
-    min-height: 90px;
+    min-height: 70px;
     @include flexCenterContent();
-    > span{
-        height: auto;
-        width: auto;
-        padding: 0 $defaultPadding;
-    }
+}
+.main-nav > ul > li > a > span{
+    height: auto;
+    width: auto;
+    padding: 6px $defaultPadding;
 }
