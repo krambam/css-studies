@@ -6,12 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/lib/scaffold.css">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        function hasBrowserBodyHasMsFlexPackAttribute(){
+            console.log(typeof document.body.style.msFlexPack === 'string');
+        }
+        $(document).ready(function(){
+            hasBrowserBodyHasMsFlexPackAttribute();
+            console.log('');
+            var $flexContainers = $( "*" ).filter(function( index ) {
+                return $( this ).css('-ms-flex-pack') === 'center';
+            });
+            $flexContainers.each(function() {
+                $(this).css('height', $( this ).height());
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container">
     <nav class="main-nav">
         <ul>
-            <li><a href="#1"><span>Home</span></a></li>
+            <li><a href="#1"><span>Home<br>Home<br>Home</span></a></li>
             <li><a href="#2"><span>About our beautiful shop</span></a></li>
             <li><a href="#3"><span>News</span></a></li>
             <li><a href="#4"><span>Calendar</span></a></li>

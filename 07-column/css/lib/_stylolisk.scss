@@ -224,3 +224,21 @@ $container-lg: $screen-lg-min - $containerSidePadding;
         @include colFloated($cols, $gutterWidth);
     }
 }
+
+
+
+// HELPER MIXIN TOOLS
+// ------------------
+@mixin flexCenterContent($minHeight: null){
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /*Center horizontaly */
+    -ms-flex-pack: center; /*Center horizontaly ie */
+    @if $minHeight == null{
+        // height: 2em; // IE BUG: height has to be set to some value for IE 11. Can be done with JS
+        min-height: 40px;
+    } @else {
+        min-height: $minHeight;
+    }
+}

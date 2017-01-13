@@ -26,7 +26,6 @@
   padding-bottom: 1.5em; }
 
 .main-nav > ul {
-  text-align: justify;
   columns: 140px 3;
   -moz-columns: 140px 3;
   column-gap: 0;
@@ -41,10 +40,7 @@
   page-break-inside: avoid; }
 
 .main-nav > ul > li > a {
-  height: 1px;
-  min-height: 90px;
   width: 100%;
-  text-align: center;
   border: solid 1px #5c5c5c;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.4) inset;
   display: block;
@@ -55,7 +51,8 @@
   justify-content: center;
   /*Center horizontaly */
   -ms-flex-pack: center;
-  /*Center horizontaly ie */ }
+  /*Center horizontaly ie */
+  min-height: 40px; }
   .main-nav > ul > li > a > span {
     height: auto;
     width: auto;
