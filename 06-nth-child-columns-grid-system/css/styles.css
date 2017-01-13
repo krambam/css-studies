@@ -1,0 +1,58 @@
+.container:before, .row:before, .container:after, .row:after {
+  content: "";
+  display: table; }
+.container:after, .row:after {
+  clear: both; }
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.container {
+  margin-right: auto;
+  margin-left: auto; }
+  @media (min-width: 768px) {
+    .container {
+      width: 98%; } }
+  @media (min-width: 992px) {
+    .container {
+      width: 98%; } }
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px; } }
+
+.row > * {
+  position: relative;
+  float: left;
+  min-height: 1px; }
+
+.row {
+  display: flex;
+  flex-flow: row wrap; }
+  .row > * {
+    margin-right: 10%;
+    width: 12%; }
+    .row > *:nth-child(5n) {
+      margin-right: 0; }
+    .row > *:nth-child(5n + 1) {
+      clear: left; }
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol {
+  margin-top: 50px;
+  margin-bottom: 50px; }
