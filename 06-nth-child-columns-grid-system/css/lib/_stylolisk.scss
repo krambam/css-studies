@@ -177,45 +177,41 @@ $container-lg: $screen-lg-min - $containerSidePadding;
 }
 
 // new grid system
-@mixin mlcol($amount, $extraQueries: null, $gutterWidth: null) {
+@mixin mlcol($colAmounts, $gutterWidth: null) {
     @extend %col-abstract;
-
     @if $gutterWidth == null {
         $gutterWidth: $defaultPadding * 2   / $screen-lg-min * 100%;
     } @else if unit($gutterWidth) == 'px' {
         $gutterWidth: $gutterWidth          / $screen-lg-min * 100%;
     }
-    $totalGutterWidth: ($amount - 1) * $gutterWidth;
-    $totalAvailableWidth: 100% - $totalGutterWidth;
-    $actualColWidth: $totalAvailableWidth / $amount;
 
-    @if $extraQueries == null {
-        @include responsive-desktop { @include mlColConfig($amount, $actualColWidth, $gutterWidth); }
+    // main
+    @if type-of($colAmounts) == 'number' {
+        $actualColWidth: ( 100% - ($colAmounts - 1) * $gutterWidth ) / $colAmounts; // 100% minus all gutter width / amount times margins
+        @include responsive-desktop { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
     } @else{
-        @each $size, $amount in $extraQueries {
-            $totalGutterWidth: ($amount - 1) * $gutterWidth;
-            $totalAvailableWidth: 100% - $totalGutterWidth;
-            $actualColWidth: $totalAvailableWidth / $amount;
+        @each $size, $colAmounts in $colAmounts {
+            $actualColWidth: ( 100% - ($colAmounts - 1) * $gutterWidth ) / $colAmounts; // 100% minus all gutter width / amount times margins
             @if $size == 'lg' {
-                @include responsive-lg { @include mlColConfig($amount, $actualColWidth, $gutterWidth); }
+                @include responsive-lg { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
             } @else if $size == 'md' {
-                @include responsive-md { @include mlColConfig($amount, $actualColWidth, $gutterWidth); }
+                @include responsive-md { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
             } @else if $size == 'sm' {
-                @include responsive-sm { @include mlColConfig($amount, $actualColWidth, $gutterWidth); }
+                @include responsive-sm { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
             } @else if $size == 'xs' {
-                @include responsive-xs { @include mlColConfig($amount, $actualColWidth, $gutterWidth); }
+                @include responsive-xs { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
             } @else if $size == 'xxs' {
-                @include responsive-xxs { @include mlColConfig($amount, $actualColWidth, $gutterWidth); }
+                @include responsive-xxs { @include mlColConfig($colAmounts, $actualColWidth, $gutterWidth); }
             }
         }
     }
 }
-@mixin flexrow($amount, $extraQueries: (), $gutterWidth: null){
+@mixin flexrow($colAmounts, $gutterWidth: null){
     @extend %clearfix;
     display: flex;
     flex-flow: row wrap;
     > *{
         width: 100%; // for media queries base
-        @include mlcol($amount, $extraQueries, $gutterWidth);
+        @include mlcol($colAmounts, $gutterWidth);
     }
 }
