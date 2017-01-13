@@ -4,27 +4,15 @@
 .container:after, .row:after {
   clear: both; }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul,
-ol {
-  padding-left: 15px;
-  padding-right: 15px; }
-
 .container {
   margin-right: auto;
   margin-left: auto; }
   @media (min-width: 768px) {
     .container {
-      width: 98%; } }
+      width: 738px; } }
   @media (min-width: 992px) {
     .container {
-      width: 98%; } }
+      width: 962px; } }
   @media (min-width: 1200px) {
     .container {
       width: 1170px; } }

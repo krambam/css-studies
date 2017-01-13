@@ -1,12 +1,3 @@
-// functions
-@function isNumber($value) {
-    @return type-of($value) == 'number';
-}
-@function isPixelNumber($value) {
-    @return isNumber($value) and index('px', unit($value)) != null;
-}
-
-
 // VARIABLES
 // --------------------------------------------------------------------------------
 
@@ -34,26 +25,11 @@ $screen-sm-max:              ($screen-md-min - 1);
 $screen-md-max:              ($screen-lg-min - 1);
 $screen-mobile-max:          ($screen-desktop-min - 1);
 
-
-
-// default padding in percent
-@if isPixelNumber($defaultPadding){
-    $defaultPaddingInPercent: $defaultPadding / $screen-lg-min * 100% !global;
-} @else{
-    $defaultPaddingInPercent: $defaultPadding !global;
-}
-
 // Container sizes
-// $containerSidePaddingInPercent: null;
-// @if isPixelNumber($defaultPadding){
-//     $containerSidePadding: $defaultPadding * 2;
-// } @else{
-//     $defaultPaddingInPercent: $defaultPadding;
-// }
-$containerSidePaddingInPercent: 2%;
-$container-lg: $screen-lg-min - 30px;
-$container-sm: 100% - $containerSidePaddingInPercent;
-$container-md: 100% - $containerSidePaddingInPercent;
+$containerSidePadding: 30px;
+$container-sm: $screen-sm-min - $containerSidePadding;
+$container-md: $screen-md-min - $containerSidePadding;
+$container-lg: $screen-lg-min - $containerSidePadding;
 
 // ------------------------------------------------------------------------------
 // ABSTRACT HELPER CLASSES
