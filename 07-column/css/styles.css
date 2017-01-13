@@ -26,11 +26,19 @@
   padding-bottom: 1.5em; }
 
 .main-nav > ul {
-  -webkit-columns: 140px 3;
-  columns: 140px 3;
-  -moz-columns: 140px 3;
-  column-gap: 0;
-  -moz-column-gap: 0; }
+  -webkit-column-count: 3;
+  /* Chrome, Safari, Opera */
+  -moz-column-count: 3;
+  /* Firefox */
+  column-count: 3;
+  -webkit-column-width: 140px;
+  /* Chrome, Safari, Opera */
+  -moz-column-width: 140px;
+  /* Firefox */
+  column-width: 140px;
+  -webkit-column-gap: 0;
+  -moz-column-gap: 0;
+  column-gap: 0; }
 
 .main-nav > ul > li {
   display: block;
